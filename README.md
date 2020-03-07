@@ -36,8 +36,8 @@ free up allocated t_options structure and its entries.
     typedef t_option*	t_options;
 ## errors
 
-    # define NO_VALUE_SPECIFIED 1 // let `type` be a key-value option. examples: "$> command --type"
-    # define UNRECOGNIZED_OPTION 2 // when option is not defined in the valid_options string
-    # define MIXED_FLAGS_TYPE 3 // let `k` be a key-value option and `b` a boolean option. examples: "$> command -ob"
-    # define SYNTAX_ERROR 4 // for valid_options string when option is empty string or not unique options.
+    # define NO_VALUE_SPECIFIED -1 // let `type` be a key-value option. examples: "$> command --type"
+    # define UNRECOGNIZED_OPTION -2 // when option is not defined in the valid_options string
+    # define MIXED_FLAGS_TYPE -3 // let `k` be a key-value option and `b` a boolean option. examples: "$> command -ob"
+    # define SYNTAX_ERROR -4 // for valid_options string when option is empty string or not unique options.
     # define RESOURCE_ERROR -5
