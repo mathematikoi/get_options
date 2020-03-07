@@ -5,7 +5,7 @@
 `offset` offset of arguments which are not options.
 `valid_options` a string containing valid option manifest. `valid_options` format: **`<[ .: ]option>`** where **`.`** means boolean and **`:`** means keyvalue option, e.g. **`".boolean:keyvalue"`**
 
-`-b` ≡ `--boolean` .
+`-b` ≡ `--boolean` and
 `-k value` ≡ `--key value` .
 
 *get_options() returns 0 if success, err != 0 otherwise.*
