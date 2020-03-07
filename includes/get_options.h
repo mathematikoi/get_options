@@ -40,7 +40,7 @@ char		*read_option(t_options options, char *option);
 void		destroy_options(t_options options);
 
 
-t_options	parse_options_format(char *valid_options);
+t_options	parse_options_format(char *valid_options, int *err);
 int			get_option_index(char option, t_options options);
 int			ft_crawl(char *string, char *delimiters);
 int			set_short_options(char *argument, t_options options, int *index);
@@ -52,9 +52,10 @@ int			set_long_option(char *argument, t_options options, int *index);
 
 # define ABS(x) ((x) > 0 ? (x) : -1 * (x))
 
-# define NO_VALUE_SPECIFIED 1 // let `type` be a key-value option. examples: "$> command --type"
-# define UNRECOGNIZED_OPTION 2 // when option is not defined in the valid_options string
-# define MIXED_FLAGS_TYPE 3 // let `k` be a key-value option and `b` a boolean option. examples: "$> command -ob" 
-# define SYNTAX_ERROR 4 // for valid_options string when option is empty string or not unique options.
+# define NO_VALUE_SPECIFIED -1 // let `type` be a key-value option. examples: "$> command --type"
+# define UNRECOGNIZED_OPTION -2 // when option is not defined in the valid_options string
+# define MIXED_FLAGS_TYPE -3 // let `k` be a key-value option and `b` a boolean option. examples: "$> command -ob" 
+# define SYNTAX_ERROR -4 // for valid_options string when option is empty string or not unique options.
+# define RESOURCE_ERROR -5
 
 #endif

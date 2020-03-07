@@ -18,8 +18,8 @@ int			get_options(char **argv, t_options *options, char *valid_options, int *off
 	int			err;
 	
 	err = 0;
-	if ((*options = parse_options_format(valid_options)))
-		return (1);
+	if ((*options = parse_options_format(valid_options, &err)))
+		return (err);
 	i = -1;
 	while (ft_strcmp(argv[++i], "--"))
 	{

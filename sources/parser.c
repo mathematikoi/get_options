@@ -14,7 +14,7 @@ static int	options_format_check(char *valid_options)
 	{
 		d = ABS(*valid_options - *(valid_options + 1));
 		if (d == 0 || d == 12)
-			return (-1);
+			return (SYNTAX_ERROR);
 		if (*valid_options == '.' || *valid_options == ':')
 		{
 			if (uniqueness[(int)*(valid_options + 1)])
@@ -29,7 +29,7 @@ static int	options_format_check(char *valid_options)
 	return (options_count);
 }
 
-t_options	parse_options_format(char *valid_options)
+t_options	parse_options_format(char *valid_options, int *err)
 {
 	t_options	options;
 	int			options_count;
@@ -37,10 +37,16 @@ t_options	parse_options_format(char *valid_options)
 	int			offset;
 	int			i;
 
-	if ((options_count = options_format_check(valid_options) == -1))
+	if ((options_count = options_format_check(valid_options) <= 0))
+	{
+		*err = options_count ? options_count : SYNTAX_ERROR;
 		return (NULL);
+	}
 	if (!(options = malloc(sizeof(t_option) * (options_count + 1))))
+	{
+		*err = RESOURCE_ERROR;
 		return (NULL);
+	}
 	ft_bzero(options, sizeof(t_option) * (options_count + 1));
 	i = -1;
 	offset = 1;
