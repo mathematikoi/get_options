@@ -1,8 +1,8 @@
 # get_options
-## int  get_options(char **argv, t_options *options, char *valid_options, int *offset)
+## int  get_options(char **argv, t_options *options, char *valid_options)
 `argv` array of program arguments.
 `options` reference to a t_options and array of t_option which should populated with options and their values.
-`offset` offset of arguments which are not options.
+t_options structure also contains the `argv_offset` for arguments which are not options.
 `valid_options` a string containing valid option manifest. `valid_options` format: **`<[ .: ]option>`** where **`.`** means boolean and **`:`** means keyvalue option, e.g. **`".boolean:keyvalue"`**
 
 `-b` ≡ `--boolean` and
