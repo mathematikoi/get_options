@@ -33,18 +33,22 @@ typedef struct	s_option
 	char	*value;
 }				t_option;
 
-typedef t_option*	t_options;
+typedef struct	s_options
+{
+	t_option	*options_;
+	int			argv_offset;
+}				t_options;
 
-int			get_options(char **argv, t_options *options, char *valid_options, int *offset);
+int			get_options(char **argv, t_options *options, char *valid_options);
 char		*read_option(t_options options, char *option);
 void		destroy_options(t_options options);
 
 
-t_options	parse_options_format(char *valid_options, int *err);
-int			get_option_index(char option, t_options options);
+t_option	*parse_options_format(char *valid_options, int *err);
+int			get_option_index(char option, t_option *options);
 int			ft_crawl(char *string, char *delimiters);
-int			set_short_options(char *argument, t_options options, int *index);
-int			set_long_option(char *argument, t_options options, int *index);
+int			set_short_options(char *argument, t_option *options, int *index);
+int			set_long_option(char *argument, t_option *options, int *index);
 
 
 # define BOOLEAN_O '.'

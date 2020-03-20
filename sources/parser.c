@@ -29,9 +29,9 @@ static int	options_format_check(char *valid_options)
 	return (options_count);
 }
 
-t_options	parse_options_format(char *valid_options, int *err)
+t_option	*parse_options_format(char *valid_options, int *err)
 {
-	t_options	options;
+	t_option	*options;
 	int			options_count;
 	int			options_length;
 	int			offset;

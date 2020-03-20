@@ -1,6 +1,6 @@
 #include "get_options.h"
 
-int			set_long_option(char *argument, t_options options, int *index)
+int			set_long_option(char *argument, t_option *options, int *index)
 {
 	int option_index;
 
@@ -18,7 +18,7 @@ int			set_long_option(char *argument, t_options options, int *index)
 	return (0);
 }
 
-int			set_short_options(char *argument, t_options options, int *index)
+int			set_short_options(char *argument, t_option *options, int *index)
 {
 	int option_index;
 	int	i;

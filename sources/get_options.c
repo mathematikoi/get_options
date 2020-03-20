@@ -12,13 +12,13 @@
 
 #include "get_options.h"
 
-int			get_options(char **argv, t_options *options, char *valid_options, int *offset)
+int			get_options(char **argv, t_options *options, char *valid_options)
 {
 	int			i;
 	int			err;
 	
 	err = 0;
-	if ((*options = parse_options_format(valid_options, &err)))
+	if ((options->options_ = parse_options_format(valid_options, &err)))
 		return (err);
 	i = -1;
 	while (ft_strcmp(argv[++i], "--"))
@@ -27,18 +27,18 @@ int			get_options(char **argv, t_options *options, char *valid_options, int *off
 			break ;
 		if (argv[i][1] == '-')
 		{
-			if ((err = set_long_option(argv[i], *options, &i)))
+			if ((err = set_long_option(argv[i], options->options_, &i)))
 				break ;
 		}
 		else
 		{
-			if ((err = set_short_options(argv[i], *options, &i)))
+			if ((err = set_short_options(argv[i], options->options_, &i)))
 				break ;
 		}
 	}
 	if (err)
 		destroy_options(*options);
-	*offset = i;
+	options->argv_offset = i;
 	return (err);
 }
 
@@ -46,9 +46,9 @@ char		*read_option(t_options options, char *option)
 {
 	int i;
 
-	if ((i = get_option_index(option[0], options)) == -1)
+	if ((i = get_option_index(option[0], options.options_)) == -1)
 		return (NULL);
-	return (options[i].value);
+	return (options.options_[i].value);
 }
 
 void		destroy_options(t_options options)
@@ -56,11 +56,11 @@ void		destroy_options(t_options options)
 	int i;
 
 	i = -1;
-	while (options[++i].option)
+	while (options.options_[++i].option)
 	{
-		free(options[i].option);
-		if (options[i].type == KEYVALUE_O)
-			free(options[i].value);
+		free(options.options_[i].option);
+		if (options.options_[i].type == KEYVALUE_O)
+			free(options.options_[i].value);
 	}
-	free(options);
+	free(options.options_);
 }

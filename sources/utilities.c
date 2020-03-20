@@ -1,6 +1,6 @@
 #include "get_options.h"
 
-int			get_option_index(char option, t_options options)
+int			get_option_index(char option, t_option *options)
 {
 	int i;
 
